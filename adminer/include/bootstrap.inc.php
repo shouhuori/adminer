@@ -54,7 +54,7 @@ $HTTPS = ($_SERVER["HTTPS"] && strcasecmp($_SERVER["HTTPS"], "off")) || ini_bool
 @ini_set("session.use_trans_sid", false); // protect links in export, @ - may be disabled
 if (!defined("SID")) {
 	session_cache_limiter(""); // to allow restarting session
-	session_name("adminer_sid"); // use specific session name to get own namespace
+	// session_name("adminer_sid"); // use specific session name to get own namespace
 	$params = array(0, preg_replace('~\?.*~', '', $_SERVER["REQUEST_URI"]), "", $HTTPS);
 	if (version_compare(PHP_VERSION, '5.2.0') >= 0) {
 		$params[] = true; // HttpOnly
