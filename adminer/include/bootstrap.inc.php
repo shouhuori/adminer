@@ -61,7 +61,11 @@ if (!defined("SID")) {
 	}
 	call_user_func_array('session_set_cookie_params', $params); // ini_set() may be disabled
 	session_start();
-}
+	if(!isset($_SESSION['adminer.login']) || !$_SESSION['adminer.login']){
+		echo '无权限';
+		die();
+	}
+ }
 
 // disable magic quotes to be able to use database escaping function
 remove_slashes(array(&$_GET, &$_POST, &$_COOKIE), $filter);
