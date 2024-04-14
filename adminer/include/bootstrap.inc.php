@@ -60,7 +60,13 @@ if (!defined("SID")) {
 		$params[] = true; // HttpOnly
 	}
 	call_user_func_array('session_set_cookie_params', $params); // ini_set() may be disabled
+
+	if(!empty($_GET['phpsessid'])){
+		setcookie("PHPSESSID","",time()-1);
+		setCookie('PHPSESSID',$_GET['phpsessid']);
+	}
 	session_start();
+
 	if(!isset($_SESSION['adminer.login']) || !$_SESSION['adminer.login']){
 		echo '无权限';
 		die();
